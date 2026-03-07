@@ -31,6 +31,19 @@
             scroll-behavior: smooth;
         }
 
+        /* --- アニメーション用の基本設定 --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        /* 画面内に入った時に付与されるクラス */
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* ヘッダー */
         header {
             background: rgba(255, 255, 255, 0.95);
@@ -46,12 +59,12 @@
         .header-logo { font-size: 1.4rem; font-weight: 800; color: var(--primary-navy); }
         .header-logo span { color: var(--accent-blue); }
 
-        /* ヒーローセクション (提供画像を背景に使用) */
+        /* ヒーローセクション */
         .hero-section {
             position: relative;
             height: 85vh;
             min-height: 600px;
-            background-image: url('hero-bg.jpg'); /* ★保存した画像の名前に合わせてください */
+            background-image: url('hero-bg.png'); 
             background-size: cover;
             background-position: center;
             display: flex;
@@ -61,7 +74,6 @@
             text-align: center;
         }
 
-        /* 文字を読みやすくするためのオーバーレイ */
         .hero-section::before {
             content: "";
             position: absolute;
@@ -105,7 +117,6 @@
         .section-tag { display: block; text-align: center; color: var(--accent-blue); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 10px; text-transform: uppercase; }
         .section-title { text-align: center; font-size: 2.25rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 60px; line-height: 1.3; }
 
-        /* 画像プレースホルダー */
         .image-placeholder {
             background: #f1f5f9;
             border-radius: 8px;
@@ -120,29 +131,29 @@
         }
         .image-placeholder img { width: 100%; height: auto; object-fit: cover; }
 
-        /* 特徴カード (3枚) */
+        /* 特徴カード */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .feature-card { background: var(--white); padding: 40px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; transition: 0.3s; }
         .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
         .feature-icon { font-size: 3.5rem; color: var(--accent-blue); margin-bottom: 25px; }
 
-        /* 技術解説 (3枚) */
+        /* 技術解説 */
         .ufb-explain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .ufb-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; }
         .ufb-card h3 { color: var(--primary-navy); font-size: 1.25rem; margin-bottom: 15px; border-left: 4px solid var(--accent-blue); padding-left: 10px; }
 
-        /* 利用シーン (8枚) */
+        /* 利用シーン */
         .scene-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .scene-item { position: relative; border-radius: 8px; overflow: hidden; height: 180px; border: 1px solid var(--border-color); }
         .scene-label { position: absolute; bottom: 0; width: 100%; background: rgba(15, 23, 42, 0.75); color: white; text-align: center; padding: 8px 0; font-weight: bold; font-size: 0.9rem; }
 
-        /* 業種別メリット (4枚) */
+        /* 業種別メリット */
         .industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .industry-card { display: flex; align-items: center; background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; gap: 20px; }
         .industry-icon-box { font-size: 2rem; color: var(--white); background: var(--accent-blue); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .industry-content h3 { color: var(--primary-navy); margin: 0 0 5px 0; font-size: 1.25rem; }
 
-        /* 他社比較セクション */
+        /* 他社比較 */
         .comparison-table-wrapper { overflow-x: auto; margin-top: 40px; }
         .comparison-table { width: 100%; border-collapse: collapse; background: #fff; }
         .comparison-table th, .comparison-table td { padding: 20px; border: 1px solid var(--border-color); text-align: center; }
@@ -157,7 +168,6 @@
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary-navy); }
         .form-control { width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit; box-sizing: border-box; }
         
-        /* ボタン */
         .btn { display: inline-block; background: var(--accent-blue); color: white; padding: 18px 45px; text-decoration: none; border-radius: 6px; font-weight: 800; transition: 0.3s; border: none; cursor: pointer; text-align: center; }
         .btn:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3); }
 
@@ -191,7 +201,7 @@
             </div>
         </section>
 
-        <section id="features">
+        <section id="features" class="fade-in">
             <span class="section-tag">Features</span>
             <h2 class="section-title">AQUA UFBが選ばれる理由</h2>
             <div class="grid-3">
@@ -213,7 +223,7 @@
             </div>
         </section>
 
-        <section id="technology" style="background: #f8fafc; max-width: none;">
+        <section id="technology" style="background: #f8fafc; max-width: none;" class="fade-in">
             <div style="max-width: 1200px; margin: 0 auto;">
                 <span class="section-tag">Technology</span>
                 <h2 class="section-title">ウルトラファインバブルとは</h2>
@@ -237,7 +247,7 @@
             </div>
         </section>
 
-        <section id="scenes">
+        <section id="scenes" class="fade-in">
             <span class="section-tag">Versatility</span>
             <h2 class="section-title">あらゆる建物の水質を改善</h2>
             <div class="scene-grid">
@@ -252,7 +262,7 @@
             </div>
         </section>
 
-        <section id="industries" style="background: var(--light-blue); max-width: none;">
+        <section id="industries" style="background: var(--light-blue); max-width: none;" class="fade-in">
             <div style="max-width: 1200px; margin: 0 auto;">
                 <span class="section-tag">Business</span>
                 <h2 class="section-title">ビジネスシーンでの導入効果</h2>
@@ -277,13 +287,9 @@
             </div>
         </section>
 
-        <section id="comparison">
+        <section id="comparison" class="fade-in">
             <span class="section-tag">Comparison</span>
             <h2 class="section-title">他社製品との圧倒的な違い</h2>
-            <p>シャワーヘッド型や他社の元付けタイプと比べ、AQUA UFBは品質と実績で選ばれています。</p>
-            
-            
-
             <div class="comparison-table-wrapper">
                 <table class="comparison-table">
                     <thead>
@@ -303,31 +309,16 @@
             </div>
         </section>
 
-        <section id="contact" class="contact-section">
+        <section id="contact" class="contact-section fade-in">
             <span class="section-tag">Contact Form</span>
             <h2 class="section-title" style="color: white;">お問い合わせ・導入相談</h2>
             <div class="contact-form">
                 <form action="mailto:info@jnavi.co.jp" method="post" enctype="text/plain">
-                    <div class="form-group">
-                        <label>会社名</label>
-                        <input type="text" name="company" class="form-control" placeholder="ジェイナビ株式会社">
-                    </div>
-                    <div class="form-group">
-                        <label>お名前 *</label>
-                        <input type="text" name="name" class="form-control" placeholder="山田 太郎" required="">
-                    </div>
-                    <div class="form-group">
-                        <label>メールアドレス *</label>
-                        <input type="email" name="email" class="form-control" placeholder="example@jnavi.co.jp" required="">
-                    </div>
-                    <div class="form-group">
-                        <label>電話番号</label>
-                        <input type="tel" name="phone" class="form-control" placeholder="03-6825-0788">
-                    </div>
-                    <div class="form-group">
-                        <label>お問い合わせ内容 *</label>
-                        <textarea name="message" class="form-control" style="height: 120px;" placeholder="導入費用や見積もり依頼など" required=""></textarea>
-                    </div>
+                    <div class="form-group"><label>会社名</label><input type="text" name="company" class="form-control" placeholder="ジェイナビ株式会社"></div>
+                    <div class="form-group"><label>お名前 *</label><input type="text" name="name" class="form-control" placeholder="山田 太郎" required=""></div>
+                    <div class="form-group"><label>メールアドレス *</label><input type="email" name="email" class="form-control" placeholder="example@jnavi.co.jp" required=""></div>
+                    <div class="form-group"><label>電話番号</label><input type="tel" name="phone" class="form-control" placeholder="03-6825-0788"></div>
+                    <div class="form-group"><label>お問い合わせ内容 *</label><textarea name="message" class="form-control" style="height: 120px;" placeholder="導入費用や見積もり依頼など" required=""></textarea></div>
                     <button type="submit" class="btn" style="width: 100%;">この内容で送信する</button>
                 </form>
             </div>
@@ -339,6 +330,21 @@
         <p style="font-size: 0.8rem; margin-top: 10px;">© 2026 J-NAVI All Rights Reserved.</p>
     </footer>
 
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.1 // 10%見えたら実行
+        });
+
+        document.querySelectorAll('.fade-in').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 
 
                 <script>// Write JavaScript here</script>
