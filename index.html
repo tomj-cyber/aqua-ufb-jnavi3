@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+                <style>.lw { font-size: 60px; font-family: Arial, Helvetica, sans-serif; }</style>
+            </head>
+            <body>
+                
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQUA UFB | ジェイナビ株式会社</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-navy: #0f172a;    /* J-NAVI ネイビー */
+            --accent-blue: #3b82f6;     /* アクセントブルー */
+            --light-blue: #f0f9ff;      /* 背景用薄い水色 */
+            --text-main: #1e293b;       /* 本文テキスト */
+            --text-muted: #64748b;      /* 補足テキスト */
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            color: var(--text-main);
+            line-height: 1.8;
+            background-color: var(--white);
+            word-break: break-all;
+        }
+
+        /* 共通セクションスタイル */
+        section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+        .section-tag { display: block; text-align: center; color: var(--accent-blue); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 10px; text-transform: uppercase; }
+        .section-title { text-align: center; font-size: 2.25rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 50px; line-height: 1.3; }
+
+        /* 画像プレースホルダー */
+        .image-placeholder {
+            background: #f1f5f9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            min-height: 200px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        .image-placeholder img { width: 100%; height: auto; object-fit: cover; }
+
+        /* ヘッダー */
+        header {
+            background: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary-navy); }
+        .logo span { color: var(--accent-blue); }
+
+        /* ヒーロー */
+        .hero { background: var(--light-blue); text-align: center; padding: 100px 5%; }
+        .hero h1 { font-size: 3rem; font-weight: 800; color: var(--primary-navy); line-height: 1.3; margin-bottom: 24px; }
+        .hero p { max-width: 800px; margin: 0 auto 40px; font-size: 1.1rem; }
+
+        /* 特徴カード */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .feature-card { background: var(--white); padding: 40px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; transition: 0.3s; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        .feature-icon { font-size: 3rem; color: var(--accent-blue); margin-bottom: 20px; }
+
+        /* 技術解説 */
+        .ufb-explain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .ufb-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; }
+        .ufb-card h3 { color: var(--primary-navy); font-size: 1.25rem; margin-bottom: 15px; border-left: 4px solid var(--accent-blue); padding-left: 10px; }
+
+        /* 利用シーン */
+        .scene-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .scene-item { position: relative; border-radius: 8px; overflow: hidden; height: 180px; border: 1px solid var(--border-color); }
+        .scene-label { position: absolute; bottom: 0; width: 100%; background: rgba(15, 23, 42, 0.7); color: white; text-align: center; padding: 8px 0; font-weight: bold; }
+
+        /* 業種別 */
+        .industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .industry-card { display: flex; align-items: center; background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; gap: 20px; }
+        .industry-icon-box { font-size: 2rem; color: var(--white); background: var(--accent-blue); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+        /* 他社比較 */
+        .comparison-table-wrapper { overflow-x: auto; margin-top: 40px; }
+        .comparison-table { width: 100%; border-collapse: collapse; background: #fff; }
+        .comparison-table th, .comparison-table td { padding: 20px; border: 1px solid var(--border-color); text-align: center; }
+        .comparison-table th { background: #f8fafc; }
+        .comparison-table .highlight { background: var(--light-blue); font-weight: 800; }
+        .point-card { background: #f8fafc; padding: 20px; border-radius: 8px; border-left: 4px solid var(--accent-blue); margin-top: 20px; }
+
+        /* フォーム */
+        .contact-section { background-color: var(--primary-navy); color: var(--white); max-width: none; }
+        .contact-form { max-width: 600px; margin: 0 auto; background: var(--white); padding: 40px; border-radius: 12px; color: var(--text-main); }
+        .form-control { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 15px; box-sizing: border-box; }
+
+        .btn { display: inline-block; background: var(--accent-blue); color: var(--white); padding: 18px 40px; text-decoration: none; border-radius: 6px; font-weight: 700; border: none; cursor: pointer; text-align: center; transition: 0.3s; }
+        .btn:hover { opacity: 0.8; }
+
+        footer { background: var(--primary-navy); color: #94a3b8; padding: 60px 5% 40px; text-align: center; border-top: 1px solid #1e293b; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 1.75rem; }
+            .ufb-explain-grid, .industry-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+
+
+    <header>
+        <div class="logo">J-NAVI <span>× AQUA UFB</span></div>
+        <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">お問い合わせ</a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <span class="section-tag">Ultra Fine Bubble Technology</span>
+            <h1>人脈と技術の力で、<br>暮らしの質をアップデート。</h1>
+            <p>ジェイナビ株式会社が提供するAQUA UFBは、独自の特許技術で家中すべての水を「究極の洗浄水」に変える次世代のソリューションです。</p>
+            <a href="#contact" class="btn">お問い合わせはこちら</a>
+        </section>
+
+        <section id="features">
+            <h2 class="section-title">AQUA UFBが選ばれる理由</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-home feature-icon"></i>
+                    <h3>家中まるごとバブル化</h3>
+                    <p>全ての蛇口からウルトラファインバブルが発生します。</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-hand-holding-water feature-icon"></i>
+                    <h3>圧倒的な洗浄力と保湿</h3>
+                    <p>毛穴の奥まで浸透し、お肌のうるおいを保ちます。</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-magic feature-icon"></i>
+                    <h3>コスト・手間ゼロ</h3>
+                    <p>電気不要・メンテナンスフリーで半永久的に使用可能。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="technology" style="background: #f8fafc; max-width: none;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <span class="section-tag">Technology</span>
+                <h2 class="section-title">ウルトラファインバブルとは</h2>
+                <div class="ufb-explain-grid">
+                    <div class="ufb-card">
+                        <div class="image-placeholder"><img src="size-comparison.jpg" alt="サイズ比較"></div>
+                        <h3>驚異のナノサイズ</h3>
+                        <p>毛髪の1,000分の1という極めて微細な泡。毛穴の奥まで入り込み、汚れを吸着・洗浄します。</p>
+                    </div>
+                    <div class="ufb-card">
+                        <div class="image-placeholder"><img src="stability.jpg" alt="安定性"></div>
+                        <h3>長時間滞留する泡</h3>
+                        <p>浮力が小さいため浮上せず、水中に数カ月間も滞留。ブラウン運動により水中に広がり、常に高い効果を発揮します。</p>
+                    </div>
+                    <div class="ufb-card">
+                        <div class="image-placeholder"><img src="core-tech.jpg" alt="特許技術"></div>
+                        <h3>特許取得の生成コア</h3>
+                        <p>【特許第 5755410 号】高品質ステンレス製の特殊構造により、水道圧だけでバブルを安定生成します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="scenes">
+            <span class="section-tag">Versatility</span>
+            <h2 class="section-title">建物のすべての水が変わります</h2>
+            <div class="scene-grid">
+                <div class="scene-item"><div class="image-placeholder"><img src="scene1.jpg"></div><div class="scene-label">マンション一室</div></div>
+                <div class="scene-item"><div class="image-placeholder"><img src="scene2.jpg"></div><div class="scene-label">一戸建て</div></div>
+                <div class="scene-item"><div class="image-placeholder"><img src="scene3.jpg"></div><div class="scene-label">アパート一棟</div></div>
+                <div class="scene-item"><div class="image-placeholder"><img src="scene4.jpg"></div><div class="scene-label">マンション一棟</div></div>
+                <div class="scene-item"><div class="image-placeholder"><img src="scene5.jpg"></div><div class="scene-label">オフィスビル</div></div>
+                <div class="scene-item"><div class="image-placeholder"><img src="scene6.jpg"></div><div class="scene-label">温浴施設</div></div>
+                <div class="scene-item"><div class="image-placeholder"><img src="scene7.jpg"></div><div class="scene-label">飲食店</div></div>
+                <div class="scene-item"><div class="image-placeholder"><img src="scene8.jpg"></div><div class="scene-label">工場・大型施設</div></div>
+            </div>
+        </section>
+
+        <section id="industries" style="background: var(--light-blue); max-width: none;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <span class="section-tag">Business Solution</span>
+                <h2 class="section-title">さまざまな業種で導入効果を発揮</h2>
+                <div class="industry-grid">
+                    <div class="industry-card">
+                        <div class="industry-icon-box"><i class="fas fa-utensils"></i></div>
+                        <div class="industry-content"><h3>飲食店・食品加工</h3><p>厨房機器の清掃時間短縮、洗剤コスト削減に貢献。</p></div>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon-box"><i class="fas fa-heartbeat"></i></div>
+                        <div class="industry-content"><h3>介護・温浴施設</h3><p>清掃負担の軽減と、入居者様の肌ケア満足度向上。</p></div>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon-box"><i class="fas fa-hotel"></i></div>
+                        <div class="industry-content"><h3>宿泊施設</h3><p>シャワー品質の向上による顧客体験の差別化。</p></div>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon-box"><i class="fas fa-building"></i></div>
+                        <div class="industry-content"><h3>アパートオーナー</h3><p>「家中まるごとバブル」による空室対策と価値向上。</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison">
+            <span class="section-tag">Comparison</span>
+            <h2 class="section-title">AQUA UFBと他社製品の比較</h2>
+            <div style="margin-bottom: 40px;">
+                <p>AQUA UFBと他社製品を比較しました。よく名前を聞くメーカーのものはシャワーヘッドや洗濯機内蔵のものが多く、使える場所が制限されてしまいせっかくのウルトラファインバブルウォーターの恩恵をフルに活用できないのがもったいないところです。</p>
+            </div>
+            
+            
+
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>比較項目</th><th class="highlight">AQUA UFB (元付け)</th><th>他社 元付け</th><th>シャワーヘッド型</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>利用範囲</td><td class="highlight">全蛇口対応</td><td>全蛇口対応</td><td>シャワーのみ</td></tr>
+                        <tr><td>口径対応</td><td class="highlight">小口径〜大口径</td><td>小口径のみ多</td><td>ー</td></tr>
+                        <tr><td>材質</td><td class="highlight">高品質ステンレス</td><td>複合素材・ネジ式</td><td>プラスチック</td></tr>
+                        <tr><td>特許</td><td class="highlight">生成システムで唯一取得</td><td>なし/一部</td><td>あり</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="point-card">
+                <p>AQUA UFBは、ウルトラファインバブルウォーター生成システムで唯一特許を取得しており、小口径から大口径まで高精細・高密度ウルトラファインバブルを水圧だけで安定して発生させます。</p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2 class="section-title" style="color: white;">お問い合わせ・導入相談</h2>
+            <div class="contact-form">
+                <form action="mailto:info@jnavi.co.jp" method="post" enctype="text/plain">
+                    <div class="form-group"><label>会社名</label><input type="text" name="company" class="form-control" placeholder="ジェイナビ株式会社"></div>
+                    <div class="form-group"><label>お名前 *</label><input type="text" name="name" class="form-control" placeholder="山田 太郎" required=""></div>
+                    <div class="form-group"><label>メールアドレス *</label><input type="email" name="email" class="form-control" placeholder="example@jnavi.co.jp" required=""></div>
+                    <div class="form-group"><label>内容 *</label><textarea name="message" class="form-control" placeholder="導入費用など..." required=""></textarea></div>
+                    <button type="submit" class="btn" style="width: 100%;">送信する</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 J-NAVI All Rights Reserved.</p>
+    </footer>
+
+
+
+                <script>// Write JavaScript here</script>
+            
+        
+    </body>
