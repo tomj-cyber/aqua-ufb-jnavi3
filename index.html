@@ -29,22 +29,21 @@
             line-height: 1.8;
             background-color: var(--white);
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        /* --- アニメーション用の基本設定 --- */
+        /* --- アニメーション設定 --- */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 1s ease-out, transform 1s ease-out;
         }
-
-        /* 画面内に入った時に付与されるクラス */
         .is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* ヘッダー */
+        /* --- ヘッダー --- */
         header {
             background: rgba(255, 255, 255, 0.95);
             padding: 15px 5%;
@@ -59,60 +58,85 @@
         .header-logo { font-size: 1.4rem; font-weight: 800; color: var(--primary-navy); }
         .header-logo span { color: var(--accent-blue); }
 
-        /* ヒーローセクション */
-        .hero-section {
+        /* --- メインスライダーエリア --- */
+        .slider-container {
             position: relative;
-            height: 85vh;
-            min-height: 600px;
-            background-image: url('hero-bg.png'); 
-            background-size: cover;
+            width: 100%;
+            height: 75vh;
+            min-height: 450px;
+            overflow: hidden;
+            background-color: #f8fafc;
+        }
+        .slider-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.45, 0, 0.55, 1);
+        }
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: contain;
             background-position: center;
+            background-repeat: no-repeat;
+            background-color: #fff;
+        }
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 20;
+        }
+        .dot {
+            width: 14px;
+            height: 14px;
+            background: rgba(15, 23, 42, 0.2);
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .dot.active { background: var(--accent-blue); transform: scale(1.2); }
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.5);
+            color: var(--primary-navy);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 30;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            transition: 0.3s;
+        }
+        .slider-arrow:hover { background: var(--accent-blue); color: white; }
+        .prev { left: 20px; }
+        .next { right: 20px; }
+
+        /* --- コンセプト（文字）セクション --- */
+        .concept-section {
+            padding: 80px 5%;
             text-align: center;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
         }
-
-        .hero-section::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%);
-        }
-
-        .hero-inner {
-            position: relative;
-            z-index: 10;
-            max-width: 1000px;
-            padding: 0 20px;
-        }
-
-        .hero-brand-label {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 0.3em;
-            margin-bottom: 15px;
-            display: block;
-            color: var(--accent-blue);
-        }
-
-        .hero-main-logo {
-            font-size: clamp(2.5rem, 10vw, 5rem);
-            font-weight: 900;
-            margin-bottom: 25px;
-            line-height: 1;
-        }
-
-        .hero-title {
-            font-size: clamp(1.5rem, 5vw, 2.8rem);
+        .concept-title {
+            font-size: clamp(1.8rem, 5vw, 3rem);
             font-weight: 800;
-            margin-bottom: 35px;
+            color: var(--primary-navy);
+            margin-bottom: 25px;
             line-height: 1.4;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        /* 共通パーツ */
+        /* --- 共通パーツ --- */
         section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
         .section-tag { display: block; text-align: center; color: var(--accent-blue); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 10px; text-transform: uppercase; }
         .section-title { text-align: center; font-size: 2.25rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 60px; line-height: 1.3; }
@@ -123,7 +147,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #94a3b8;
             min-height: 200px;
             margin-bottom: 15px;
             border: 1px solid var(--border-color);
@@ -174,7 +197,7 @@
         footer { background: var(--primary-navy); color: #94a3b8; padding: 60px 5% 40px; text-align: center; border-top: 1px solid #1e293b; }
 
         @media (max-width: 768px) {
-            .hero-section { height: 70vh; }
+            .slider-container { height: 45vh; min-height: 300px; }
             .section-title { font-size: 1.75rem; }
             .grid-3, .ufb-explain-grid, .industry-grid { grid-template-columns: 1fr; }
             .contact-form { padding: 30px 20px; }
@@ -185,23 +208,31 @@
 
     <header>
         <div class="header-logo">J-NAVI <span>× AQUA UFB</span></div>
-        <nav>
-            <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">お問い合わせ</a>
-        </nav>
+        <nav><a href="#contact" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">お問い合わせ</a></nav>
     </header>
 
     <main>
-        <section class="hero-section">
-            <div class="hero-inner">
-                <span class="hero-brand-label">J-NAVI × AQUA UFB</span>
-                <div class="hero-main-logo">J-NAVI × AQUA UFB</div>
-                <h1 class="hero-title">家中まるごと、<br>「究極の洗浄水」に変わる。</h1>
-                <p style="font-size: 1.3rem; margin-bottom: 40px; opacity: 0.9;">特許取得のナノバブル技術が、暮らしとビジネスを劇的に進化させる</p>
+        <div class="slider-container">
+            <button class="slider-arrow prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="slider-wrapper" id="slider" style="transform: translateX(-100%);">
+                <div class="slide" style="background-image: url('hero-bg.png');"></div>
+                <div class="slide" style="background-image: url('hero-bg2.png');"></div>
+                <div class="slide" style="background-image: url('hero-bg3.png');"></div>
+            </div>
+            <button class="slider-arrow next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
+            <div class="slider-dots" id="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+        </div>
+
+        <section class="concept-section fade-in is-visible">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <span class="section-tag">J-NAVI × AQUA UFB</span>
+                <h1 class="concept-title">家中まるごと、<br>「究極の洗浄水」に変わる。</h1>
+                <p style="font-size: 1.3rem; margin-bottom: 40px; color: var(--text-muted);">特許取得のナノバブル技術が、暮らしとビジネスを劇的に進化させる</p>
                 <a href="#contact" class="btn">無料で導入相談する</a>
             </div>
         </section>
 
-        <section id="features" class="fade-in">
+        <section id="features" class="fade-in is-visible">
             <span class="section-tag">Features</span>
             <h2 class="section-title">AQUA UFBが選ばれる理由</h2>
             <div class="grid-3">
@@ -223,7 +254,7 @@
             </div>
         </section>
 
-        <section id="technology" style="background: #f8fafc; max-width: none;" class="fade-in">
+        <section id="technology" style="background: #f8fafc; max-width: none;" class="fade-in is-visible">
             <div style="max-width: 1200px; margin: 0 auto;">
                 <span class="section-tag">Technology</span>
                 <h2 class="section-title">ウルトラファインバブルとは</h2>
@@ -247,7 +278,7 @@
             </div>
         </section>
 
-        <section id="scenes" class="fade-in">
+        <section id="scenes" class="fade-in is-visible">
             <span class="section-tag">Versatility</span>
             <h2 class="section-title">あらゆる建物の水質を改善</h2>
             <div class="scene-grid">
@@ -262,7 +293,7 @@
             </div>
         </section>
 
-        <section id="industries" style="background: var(--light-blue); max-width: none;" class="fade-in">
+        <section id="industries" style="background: var(--light-blue); max-width: none;" class="fade-in is-visible">
             <div style="max-width: 1200px; margin: 0 auto;">
                 <span class="section-tag">Business</span>
                 <h2 class="section-title">ビジネスシーンでの導入効果</h2>
@@ -287,7 +318,7 @@
             </div>
         </section>
 
-        <section id="comparison" class="fade-in">
+        <section id="comparison" class="fade-in is-visible">
             <span class="section-tag">Comparison</span>
             <h2 class="section-title">他社製品との圧倒的な違い</h2>
             <div class="comparison-table-wrapper">
@@ -309,7 +340,7 @@
             </div>
         </section>
 
-        <section id="contact" class="contact-section fade-in">
+        <section id="contact" class="contact-section fade-in is-visible">
             <span class="section-tag">Contact Form</span>
             <h2 class="section-title" style="color: white;">お問い合わせ・導入相談</h2>
             <div class="contact-form">
@@ -331,15 +362,58 @@
     </footer>
 
     <script>
+        /* --- スライダー制御 --- */
+        const slider = document.getElementById('slider');
+        const slides = document.querySelectorAll('.slide');
+        const dotsContainer = document.getElementById('dots');
+        let currentIndex = 0;
+        let timer;
+
+        // ドット生成
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                goToSlide(i);
+                resetTimer();
+            });
+            dotsContainer.appendChild(dot);
+        });
+        const dots = document.querySelectorAll('.dot');
+
+        function goToSlide(index) {
+            currentIndex = index;
+            if (currentIndex >= slides.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = slides.length - 1;
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach(d => d.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        }
+
+        function moveSlide(step) {
+            goToSlide(currentIndex + step);
+            resetTimer();
+        }
+
+        function startTimer() {
+            timer = setInterval(() => moveSlide(1), 5000);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            startTimer();
+        }
+        startTimer();
+
+        /* --- フェードインアニメーション監視 --- */
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
                 }
             });
-        }, {
-            threshold: 0.1 // 10%見えたら実行
-        });
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.fade-in').forEach(section => {
             observer.observe(section);
