@@ -14,8 +14,8 @@
     <style>
         :root {
             --primary-navy: #0f172a;    /* J-NAVI ネイビー */
-            --accent-blue: #3b82f6;     /* アクセントブルー */
-            --light-blue: #f0f9ff;      /* 背景用薄い水色 */
+            --accent-blue: #00a8ff;     /* 明るいアクアブルーに変更 */
+            --light-blue: #e0f2fe;      /* 背景用をより明るい水色に変更 */
             --text-main: #1e293b;       /* 本文テキスト */
             --text-muted: #64748b;      /* 補足テキスト */
             --white: #ffffff;
@@ -71,6 +71,7 @@
             display: flex;
             width: 100%;
             height: 100%;
+            transform: translateX(0);
             transition: transform 0.8s cubic-bezier(0.45, 0, 0.55, 1);
         }
         .slide {
@@ -93,18 +94,19 @@
         .dot {
             width: 14px;
             height: 14px;
-            background: rgba(15, 23, 42, 0.2);
-            border: 2px solid white;
+            background: rgba(15, 23, 42, 0.1);
+            border: 2px solid #ddd;
             border-radius: 50%;
             cursor: pointer;
             transition: 0.3s;
         }
-        .dot.active { background: var(--accent-blue); transform: scale(1.2); }
+        .dot.active { background: var(--accent-blue); border-color: var(--accent-blue); transform: scale(1.2); }
+        
         .slider-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.7);
             color: var(--primary-navy);
             border: none;
             width: 50px;
@@ -121,7 +123,7 @@
         .prev { left: 20px; }
         .next { right: 20px; }
 
-        /* --- コンセプト（文字）セクション --- */
+        /* --- コンセプトセクション --- */
         .concept-section {
             padding: 80px 5%;
             text-align: center;
@@ -154,29 +156,26 @@
         }
         .image-placeholder img { width: 100%; height: auto; object-fit: cover; }
 
-        /* 特徴カード */
+        /* カード系 */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .feature-card { background: var(--white); padding: 40px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; transition: 0.3s; }
         .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
         .feature-icon { font-size: 3.5rem; color: var(--accent-blue); margin-bottom: 25px; }
 
-        /* 技術解説 */
         .ufb-explain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .ufb-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; }
         .ufb-card h3 { color: var(--primary-navy); font-size: 1.25rem; margin-bottom: 15px; border-left: 4px solid var(--accent-blue); padding-left: 10px; }
 
-        /* 利用シーン */
         .scene-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .scene-item { position: relative; border-radius: 8px; overflow: hidden; height: 180px; border: 1px solid var(--border-color); }
         .scene-label { position: absolute; bottom: 0; width: 100%; background: rgba(15, 23, 42, 0.75); color: white; text-align: center; padding: 8px 0; font-weight: bold; font-size: 0.9rem; }
 
-        /* 業種別メリット */
         .industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .industry-card { display: flex; align-items: center; background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; gap: 20px; }
         .industry-icon-box { font-size: 2rem; color: var(--white); background: var(--accent-blue); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .industry-content h3 { color: var(--primary-navy); margin: 0 0 5px 0; font-size: 1.25rem; }
 
-        /* 他社比較 */
+        /* 比較表 */
         .comparison-table-wrapper { overflow-x: auto; margin-top: 40px; }
         .comparison-table { width: 100%; border-collapse: collapse; background: #fff; }
         .comparison-table th, .comparison-table td { padding: 20px; border: 1px solid var(--border-color); text-align: center; }
@@ -184,7 +183,7 @@
         .comparison-table .highlight { background: var(--light-blue); font-weight: 800; }
         .comparison-note { background: #f8fafc; padding: 25px; border-radius: 8px; border-left: 5px solid var(--accent-blue); margin-top: 30px; }
 
-        /* 問い合わせフォーム */
+        /* フォーム */
         .contact-section { background-color: var(--primary-navy); color: var(--white); max-width: none; }
         .contact-form { max-width: 600px; margin: 0 auto; background: var(--white); padding: 45px; border-radius: 12px; color: var(--text-main); }
         .form-group { margin-bottom: 20px; }
@@ -192,7 +191,7 @@
         .form-control { width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit; box-sizing: border-box; }
         
         .btn { display: inline-block; background: var(--accent-blue); color: white; padding: 18px 45px; text-decoration: none; border-radius: 6px; font-weight: 800; transition: 0.3s; border: none; cursor: pointer; text-align: center; }
-        .btn:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3); }
+        .btn:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 168, 255, 0.4); }
 
         footer { background: var(--primary-navy); color: #94a3b8; padding: 60px 5% 40px; text-align: center; border-top: 1px solid #1e293b; }
 
@@ -213,13 +212,13 @@
 
     <main>
         <div class="slider-container">
-            <button class="slider-arrow prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-arrow prev" aria-label="前へ" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
             <div class="slider-wrapper" id="slider" style="transform: translateX(-100%);">
                 <div class="slide" style="background-image: url('hero-bg.png');"></div>
                 <div class="slide" style="background-image: url('hero-bg2.png');"></div>
                 <div class="slide" style="background-image: url('hero-bg3.png');"></div>
             </div>
-            <button class="slider-arrow next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
+            <button class="slider-arrow next" aria-label="次へ" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
             <div class="slider-dots" id="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
         </div>
 
@@ -362,65 +361,73 @@
     </footer>
 
     <script>
-        /* --- スライダー制御 --- */
-        const slider = document.getElementById('slider');
-        const slides = document.querySelectorAll('.slide');
-        const dotsContainer = document.getElementById('dots');
-        let currentIndex = 0;
-        let timer;
+        document.addEventListener('DOMContentLoaded', () => {
+            /* --- スライダー制御 --- */
+            const slider = document.getElementById('slider');
+            const slides = document.querySelectorAll('.slide');
+            const dotsContainer = document.getElementById('dots');
+            let currentIndex = 0;
+            let timer;
 
-        // ドット生成
-        slides.forEach((_, i) => {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => {
-                goToSlide(i);
-                resetTimer();
-            });
-            dotsContainer.appendChild(dot);
-        });
-        const dots = document.querySelectorAll('.dot');
+            function initSlider() {
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        goToSlide(i);
+                        resetTimer();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+                goToSlide(0);
+                startTimer();
+            }
 
-        function goToSlide(index) {
-            currentIndex = index;
-            if (currentIndex >= slides.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = slides.length - 1;
-            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            dots.forEach(d => d.classList.remove('active'));
-            dots[currentIndex].classList.add('active');
-        }
-
-        function moveSlide(step) {
-            goToSlide(currentIndex + step);
-            resetTimer();
-        }
-
-        function startTimer() {
-            timer = setInterval(() => moveSlide(1), 5000);
-        }
-
-        function resetTimer() {
-            clearInterval(timer);
-            startTimer();
-        }
-        startTimer();
-
-        /* --- フェードインアニメーション監視 --- */
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
+            function goToSlide(index) {
+                currentIndex = index;
+                if (currentIndex >= slides.length) currentIndex = 0;
+                if (currentIndex < 0) currentIndex = slides.length - 1;
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                const currentDots = document.querySelectorAll('.dot');
+                if (currentDots.length > 0) {
+                    currentDots.forEach(d => d.classList.remove('active'));
+                    currentDots[currentIndex].classList.add('active');
                 }
-            });
-        }, { threshold: 0.1 });
+            }
 
-        document.querySelectorAll('.fade-in').forEach(section => {
-            observer.observe(section);
+            window.moveSlide = function(step) {
+                goToSlide(currentIndex + step);
+                resetTimer();
+            };
+
+            function startTimer() {
+                timer = setInterval(() => { goToSlide(currentIndex + 1); }, 5000);
+            }
+
+            function resetTimer() {
+                clearInterval(timer);
+                startTimer();
+            }
+
+            initSlider();
+
+            /* --- フェードインアニメーション --- */
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(section => {
+                observer.observe(section);
+            });
         });
     </script>
 
-
+ 
                 <script>// Write JavaScript here</script>
             
         
